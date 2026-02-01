@@ -59,24 +59,23 @@ Specialized agents include:
 - Streamlit
 
 ---
-
 ## 📌 Project Status
 
-- Day 1: Architecture and repository setup ✅
-- Next: Intent classification agent
+- Day 1: Project setup and agentic architecture defined ✅
+- Day 2: Intent classification agent implemented ✅
+- Day 3: Intent-based agent routing logic added ✅
+- Day 4: RAG-based Knowledge Retrieval Agent implemented (FAISS + embeddings) ✅
 
----
 
-## 🔮 Future Enhancements
+## 🧠 Day 4 – Knowledge Retrieval Agent (RAG)
 
-- CRM or ticketing system integration
-- Analytics on support queries
-- Confidence-based fallback handling
+Implemented a Retrieval-Augmented Generation (RAG) pipeline inside a specialized Knowledge Retrieval Agent.
 
-----
+Key components:
+- SentenceTransformer embeddings for semantic understanding
+- FAISS vector store for similarity search
+- Retriever module to fetch top-k relevant documents
+- Agent-level abstraction for knowledge-based queries
 
-## 🗓️ Development Log
+This design ensures scalable, explainable, and enterprise-ready document question answering.
 
-- **Day 2:** Implemented intent classification agent and CLI-based testing.
-
-- Day 3: Agent routing logic implemented ✅
