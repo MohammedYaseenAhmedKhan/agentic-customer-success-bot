@@ -73,4 +73,9 @@ Specialized agents include:
 - Analytics on support queries
 - Confidence-based fallback handling
 
-- Day 2: Intent classification agent implemented ✅
+----
+
+## 🗓️ Development Log
+
+- **Day 2:** Implemented intent classification agent and CLI-based testing.
+
