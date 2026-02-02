@@ -1,9 +1,10 @@
 """
 Knowledge Retrieval Agent
-Uses RAG to answer product-related questions.
+Uses RAG + LLM to answer product-related questions.
 """
 
 from rag.retriever import Retriever
+from llm.gemini_client import generate_answer
 
 
 class KnowledgeAgent:
@@ -12,9 +13,7 @@ class KnowledgeAgent:
 
     def handle(self, query: str) -> dict:
         relevant_docs = self.retriever.retrieve(query)
-
-        # LLM placeholder (next step we plug real LLM)
-        answer = "Based on the documentation: " + " ".join(relevant_docs)
+        answer = generate_answer(query, relevant_docs)
 
         return {
             "agent": "Knowledge Retrieval Agent",
