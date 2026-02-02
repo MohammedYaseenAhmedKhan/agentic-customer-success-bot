@@ -79,3 +79,5 @@ Key components:
 
 This design ensures scalable, explainable, and enterprise-ready document question answering.
 
+- Day 5: Integrated Gemini LLM for grounded answer generation ✅
+
