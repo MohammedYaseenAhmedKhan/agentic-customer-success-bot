@@ -1,19 +1,29 @@
-"""
-Retriever for Knowledge Retrieval Agent
-"""
-
-from rag.embedder import embed_text
-from rag.vector_store import VectorStore
+import faiss
+from rag.embedder import embed_texts
+from rag.faiss_store import save_index, load_index
 
 
 class Retriever:
     def __init__(self, documents: list[str]):
-        self.store = VectorStore(embedding_dim=384)
+        self.k = 3
 
-        for doc in documents:
-            embedding = embed_text(doc)
-            self.store.add(embedding, doc)
+        index, stored_docs = load_index()
 
-    def retrieve(self, query: str):
-        query_embedding = embed_text(query)
-        return self.store.search(query_embedding)
+        if index is not None:
+            self.index = index
+            self.documents = stored_docs
+        else:
+            self.documents = documents
+            embeddings = embed_texts(documents)
+
+            dim = embeddings.shape[1]
+            self.index = faiss.IndexFlatL2(dim)
+            self.index.add(embeddings)
+
+            save_index(self.index, self.documents)
+
+    def retrieve(self, query: str) -> list[str]:
+        query_embedding = embed_texts([query])
+        _, indices = self.index.search(query_embedding, self.k)
+
+        return [self.documents[i] for i in indices[0]]
