@@ -1,14 +1,23 @@
 from agents.intent_agent import classify_intent
 from router import route_intent
 from agents.knowledge_agent import KnowledgeAgent
+from ingestion.pdf_loader import load_pdfs
+from ingestion.chunker import chunk_documents
 
-# sample internal docs
-DOCUMENTS = [
-    "Users can reset their password from the account settings page.",
-    "Subscriptions are billed monthly.",
-    "Users can upgrade plans from the billing dashboard."
-]
 
+def load_knowledge_base():
+    """
+    Loads and chunks PDF documents from the knowledge base.
+    """
+    pdf_documents = load_pdfs("data/knowledge_base")
+    documents = chunk_documents(pdf_documents)
+    return documents
+
+
+# Load documents once at startup
+DOCUMENTS = load_knowledge_base()
+
+# Initialize agent with PDF-based knowledge
 knowledge_agent = KnowledgeAgent(DOCUMENTS)
 
 
