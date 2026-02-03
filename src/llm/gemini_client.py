@@ -20,6 +20,9 @@ FALLBACK_MODELS = [
 
 
 def generate_answer(query: str, context: list[str]) -> str:
+    # 🔍 DEBUG: confirms LLM invocation
+    print("🚨 LLM CALLED 🚨")
+
     prompt = f"""
 You are an enterprise customer support assistant.
 Answer the question using ONLY the context provided.
