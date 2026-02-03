@@ -81,8 +81,20 @@ This design ensures scalable, explainable, and enterprise-ready document questio
 
 ## ✅ Progress Update
 
-- Day 5: Integrated Gemini Flash 2.5 for grounded answer generation
+- ##Day 5: Integrated Gemini Flash 2.5 for grounded answer generation
 - Implemented robust fallback when LLM quota is exhausted
 - Validated end-to-end RAG pipeline
 
+## Day 6 Update
+- Added PDF and DOCX ingestion support
+- Enabled large enterprise document processing
+- Integrated ingestion into RAG pipeline
+
+
+## Day 7 Update – Persistent Vector Store
+
+- Implemented persistent FAISS vector storage
+- Embeddings are computed once and saved to disk
+- FAISS index and document mappings are reused across sessions
+- Improved startup performance and production readiness
 
