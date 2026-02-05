@@ -1,5 +1,5 @@
-from rag.retriever import Retriever
-from llm.gemini_client import generate_answer
+from src.rag.retriever import Retriever
+from src.llm.gemini_client import generate_answer
 
 
 class KnowledgeAgent:
@@ -8,7 +8,6 @@ class KnowledgeAgent:
 
     def handle(self, query: str) -> dict:
         retrieved_chunks = self.retriever.retrieve(query)
-
         context = [chunk["content"] for chunk in retrieved_chunks]
 
         try:

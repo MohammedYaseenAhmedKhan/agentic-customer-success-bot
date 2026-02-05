@@ -1,6 +1,6 @@
 import faiss
-from rag.embedder import embed_texts
-from rag.faiss_store import save_index, load_index
+from src.rag.embedder import embed_texts
+from src.rag.faiss_store import save_index, load_index
 
 
 class Retriever:
@@ -27,5 +27,4 @@ class Retriever:
     def retrieve(self, query: str) -> list[dict]:
         query_embedding = embed_texts([query])
         _, indices = self.index.search(query_embedding, self.k)
-
         return [self.documents[i] for i in indices[0]]
