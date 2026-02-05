@@ -124,9 +124,3 @@ Clean, modular, and extensible design
 
 
 ---
-
-### 🔹 Final README commit
-```bash
-git add README.md
-git commit -m "Finalize README with architecture, usage, and design notes"
-git push
