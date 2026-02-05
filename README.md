@@ -1,100 +1,132 @@
-# Agentic Customer Success Bot for SaaS
+# Agentic Customer Support Assistant (RAG-based)
 
-An agent-based AI system designed to automate and streamline customer support workflows for SaaS applications.  
-The system uses intent classification and agent routing to delegate customer queries to specialized agents.
+A production-style, multi-agent customer support assistant built using
+Retrieval-Augmented Generation (RAG), deterministic policy handling,
+human escalation, analytics logging, and a Streamlit UI.
 
----
-
-## 🚀 Problem Statement
-
-SaaS companies receive a wide range of customer queries such as product questions, billing issues, bug reports, and feature requests.  
-Traditional chatbots or simple RAG-based systems treat all queries the same way, which leads to inefficient handling and poor user experience.
+The system is designed to **work even when LLM APIs are unavailable**,
+making it reliable, auditable, and enterprise-ready.
 
 ---
 
-## 💡 Solution Overview
+## 🚀 Key Features
 
-This project implements an **agentic customer support system** where:
-- Each user query is first classified by intent
-- A routing layer decides how the query should be handled
-- Specialized agents execute task-specific logic
-- Responses are returned in structured, enterprise-ready formats
+- Multi-agent architecture (Knowledge, Policy, Escalation, Analytics)
+- Retrieval-Augmented Generation (RAG) using FAISS
+- SentenceTransformers for local embeddings
+- Gemini LLM integration with safe fallback
+- Deterministic policy & compliance handling
+- Human-in-the-loop escalation with ticketing
+- Analytics logging for observability
+- Streamlit-based interactive UI
+- Source-aware answers with document citations
 
 ---
 
-## 🧠 High-Level Architecture
+## 🧠 Architecture Overview
 
 User Query
 ↓
-Intent Classification Agent
+Intent Classification
 ↓
 Agent Router
 ↓
-Specialized Agent
++-------------------------------+
+| Knowledge Agent (RAG + LLM) |
+| Policy Agent (Rules-based) |
+| Escalation Agent (Human) |
++-------------------------------+
+↓
+Analytics Agent (Logging)
 
-
-Specialized agents include:
-- Knowledge Retrieval Agent (RAG-based)
-- Billing & Account Support Agent
-- Bug Reporting & Feedback Agent
-- General Support Agent
 
 ---
 
-## 🏗️ Design Principles
+## 🧰 Tech Stack
 
-- Separation of concerns between agents
-- Modular and extensible architecture
-- Transparent routing logic
-- Focus on enterprise automation
+- Language: Python
+- Embeddings: SentenceTransformers
+- Vector Store: FAISS
+- LLM: Google Gemini (optional)
+- UI: Streamlit
+- Document Parsing: pdfplumber, python-docx
+- Analytics: JSONL logging
+- Environment: virtualenv
+
+---
+
+## 📁 Project Structure
+
+agentic-customer-success-bot/
+├── app/
+│ └── streamlit_app.py
+├── src/
+│ ├── agents/
+│ ├── rag/
+│ ├── ingestion/
+│ ├── llm/
+│ └── main.py
+├── data/
+│ ├── knowledge_base/
+│ ├── vector_store/
+│ └── analytics/
+├── requirements.txt
+└── README.md
+
 
 ---
 
-## 🧰 Tech Stack (Planned)
+## 🖥️ Run the Application
 
-- Python
-- LLM (Gemini / OpenAI)
-- SentenceTransformers
-- FAISS
-- Streamlit
+### CLI
+```bash
+python src/main.py
+Streamlit UI
+python -m streamlit run app/streamlit_app.py
+⚠️ LLM Availability Note
+The system automatically uses Gemini LLM when API quota is available
+
+If quota is exhausted, it falls back to retrieval-only answers
+
+No code changes are required when tokens are restored
+
+This ensures graceful degradation in production.
+
+🎯 Example Queries
+What is the leave policy?
+
+What happens if an employee violates discipline rules?
+
+I want to talk to HR
+
+📊 Analytics
+All queries, intents, and routing decisions are logged to:
+
+data/analytics/query_logs.jsonl
+This helps identify:
+
+Common user questions
+
+Knowledge gaps
+
+Agent usage distribution
+
+🏁 Project Highlights
+LLM-optional architecture
+
+Enterprise-safe compliance handling
+
+Human escalation support
+
+Observability and auditability
+
+Clean, modular, and extensible design
+
 
 ---
-## 📌 Project Status
 
-- Day 1: Project setup and agentic architecture defined ✅
-- Day 2: Intent classification agent implemented ✅
-- Day 3: Intent-based agent routing logic added ✅
-- Day 4: RAG-based Knowledge Retrieval Agent implemented (FAISS + embeddings) ✅
-
-
-## 🧠 Day 4 – Knowledge Retrieval Agent (RAG)
-
-Implemented a Retrieval-Augmented Generation (RAG) pipeline inside a specialized Knowledge Retrieval Agent.
-
-Key components:
-- SentenceTransformer embeddings for semantic understanding
-- FAISS vector store for similarity search
-- Retriever module to fetch top-k relevant documents
-- Agent-level abstraction for knowledge-based queries
-
-This design ensures scalable, explainable, and enterprise-ready document question answering.
-
-## ✅ Progress Update
-
-- ##Day 5: Integrated Gemini Flash 2.5 for grounded answer generation
-- Implemented robust fallback when LLM quota is exhausted
-- Validated end-to-end RAG pipeline
-
-## Day 6 Update
-- Added PDF and DOCX ingestion support
-- Enabled large enterprise document processing
-- Integrated ingestion into RAG pipeline
-
-
-## Day 7 Update – Persistent Vector Store
-
-- Implemented persistent FAISS vector storage
-- Embeddings are computed once and saved to disk
-- FAISS index and document mappings are reused across sessions
-- Improved startup performance and production readiness
-
+### 🔹 Final README commit
+```bash
+git add README.md
+git commit -m "Finalize README with architecture, usage, and design notes"
+git push
