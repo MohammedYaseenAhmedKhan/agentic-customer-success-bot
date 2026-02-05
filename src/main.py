@@ -1,12 +1,12 @@
-from agents.intent_agent import classify_intent
-from router import route_intent
-from agents.knowledge_agent import KnowledgeAgent
-from agents.policy_agent import PolicyAgent
-from agents.escalation_agent import EscalationAgent
-from agents.analytics_agent import AnalyticsAgent
-from ingestion.pdf_loader import load_pdfs
-from ingestion.docx_loader import load_docx
-from ingestion.chunker import chunk_documents
+from src.agents.intent_agent import classify_intent
+from src.router import route_intent
+from src.agents.knowledge_agent import KnowledgeAgent
+from src.agents.policy_agent import PolicyAgent
+from src.agents.escalation_agent import EscalationAgent
+from src.agents.analytics_agent import AnalyticsAgent
+from src.ingestion.pdf_loader import load_pdfs
+from src.ingestion.docx_loader import load_docx
+from src.ingestion.chunker import chunk_documents
 
 
 def load_knowledge_base():
@@ -47,12 +47,4 @@ if __name__ == "__main__":
         query = input("\nEnter customer query (type 'exit' to quit): ")
         if query.lower() == "exit":
             break
-        result = handle_user_query(query)
-
-        print("\nAnswer:")
-        print(result["answer"])
-
-        if "sources" in result:
-            print("\nSources:")
-            for src in result["sources"]:
-                print(f"- {src}")
+        print(handle_user_query(query))
