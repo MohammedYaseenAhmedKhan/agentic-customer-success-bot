@@ -15,10 +15,8 @@ def load_knowledge_base():
     return chunk_documents(pdf_docs + docx_docs)
 
 
-# Load documents once
 DOCUMENTS = load_knowledge_base()
 
-# Initialize agents
 knowledge_agent = KnowledgeAgent(DOCUMENTS)
 policy_agent = PolicyAgent()
 escalation_agent = EscalationAgent()
@@ -29,7 +27,6 @@ def handle_user_query(user_query: str) -> dict:
     intent = classify_intent(user_query)
     agent_name = route_intent(intent)
 
-    # Log analytics (OBSERVE ONLY)
     analytics_agent.log_event(
         query=user_query,
         intent=intent,
@@ -50,4 +47,12 @@ if __name__ == "__main__":
         query = input("\nEnter customer query (type 'exit' to quit): ")
         if query.lower() == "exit":
             break
-        print(handle_user_query(query))
+        result = handle_user_query(query)
+
+        print("\nAnswer:")
+        print(result["answer"])
+
+        if "sources" in result:
+            print("\nSources:")
+            for src in result["sources"]:
+                print(f"- {src}")
