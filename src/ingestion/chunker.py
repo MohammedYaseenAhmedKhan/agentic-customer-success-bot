@@ -1,13 +1,13 @@
 """
 Text Chunker
-Splits text into overlapping chunks
+Splits documents into overlapping chunks with metadata
 """
 
 def chunk_documents(
     documents: list[dict],
     chunk_size: int = 500,
     overlap: int = 100
-) -> list[str]:
+) -> list[dict]:
 
     chunks = []
 
@@ -17,11 +17,13 @@ def chunk_documents(
 
         while start < len(text):
             end = start + chunk_size
-            chunk = text[start:end]
+            chunk_text = text[start:end]
 
-            chunks.append(
-                f"[{doc['source']} | Page {doc['page']}] {chunk}"
-            )
+            chunks.append({
+                "content": chunk_text,
+                "source": doc["source"],
+                "page": doc["page"]
+            })
 
             start = end - overlap
 
