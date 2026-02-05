@@ -1,3 +1,0 @@
-{"timestamp": "2026-02-05T18:18:29.227775", "query": "What is the leave policy?", "intent": "knowledge_query", "agent": "Knowledge Retrieval Agent"}
-{"timestamp": "2026-02-05T18:18:30.160085", "query": "What happens if an employee violates discipline rules?", "intent": "policy_query", "agent": "Policy / Compliance Agent"}
-{"timestamp": "2026-02-05T18:18:30.161576", "query": "I want to talk to HR", "intent": "general_query", "agent": "Escalation Agent"}
