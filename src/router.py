@@ -10,4 +10,5 @@ def route_intent(intent: str) -> str:
     if intent == "knowledge_query":
         return "Knowledge Retrieval Agent"
 
+    # Default fallback
     return "Escalation Agent"
