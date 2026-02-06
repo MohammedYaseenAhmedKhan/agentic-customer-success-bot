@@ -2,28 +2,27 @@
 
 A production-style, multi-agent customer support assistant built using
 Retrieval-Augmented Generation (RAG), deterministic policy handling,
-human escalation, analytics logging, and a Streamlit UI.
+human escalation, and analytics logging.
 
-The system is designed to **work even when LLM APIs are unavailable**,
-making it reliable, auditable, and enterprise-ready.
+The system is designed to operate **even when LLM APIs are unavailable**,
+ensuring reliability, auditability, and enterprise readiness.
 
 ---
 
 ## 🚀 Key Features
-
 - Multi-agent architecture (Knowledge, Policy, Escalation, Analytics)
 - Retrieval-Augmented Generation (RAG) using FAISS
-- SentenceTransformers for local embeddings
-- Gemini LLM integration with safe fallback
-- Deterministic policy & compliance handling
-- Human-in-the-loop escalation with ticketing
-- Analytics logging for observability
+- Local embeddings with SentenceTransformers
+- Optional Gemini LLM integration with safe fallback
+- Deterministic policy and compliance handling
+- Human-in-the-loop escalation via ticketing
+- Analytics logging for observability and audits
 - Streamlit-based interactive UI
-- Source-aware answers with document citations
+- Source-aware responses with document citations
 
 ---
 
-## 🧠 Architecture Overview
+## 🧠 System Architecture
 
 User Query
 ↓
@@ -43,29 +42,27 @@ Analytics Agent (Logging)
 ---
 
 ## 🧰 Tech Stack
-
 - Language: Python
 - Embeddings: SentenceTransformers
 - Vector Store: FAISS
 - LLM: Google Gemini (optional)
 - UI: Streamlit
 - Document Parsing: pdfplumber, python-docx
-- Analytics: JSONL logging
+- Analytics: JSONL-based logging
 - Environment: virtualenv
 
 ---
 
 ## 📁 Project Structure
 
-agentic-customer-success-bot/
-├── app/
-│ └── streamlit_app.py
+agentic-customer-support-bot/
+├── app/ # Streamlit UI
 ├── src/
-│ ├── agents/
-│ ├── rag/
-│ ├── ingestion/
-│ ├── llm/
-│ └── main.py
+│ ├── agents/ # Agent implementations
+│ ├── rag/ # Retrieval pipeline
+│ ├── ingestion/ # Knowledge base ingestion
+│ ├── llm/ # LLM integration layer
+│ └── main.py # Orchestration entry point
 ├── data/
 │ ├── knowledge_base/
 │ ├── vector_store/
@@ -76,21 +73,21 @@ agentic-customer-success-bot/
 
 ---
 
-## 🖥️ Run the Application
+## ▶️ Running the Application
 
-### CLI
+### CLI mode
 ```bash
 python src/main.py
 Streamlit UI
 python -m streamlit run app/streamlit_app.py
-⚠️ LLM Availability Note
-The system automatically uses Gemini LLM when API quota is available
+⚠️ LLM Availability & Fallback Behavior
+Uses Gemini LLM when API quota is available
 
-If quota is exhausted, it falls back to retrieval-only answers
+Automatically falls back to retrieval-only answers when quota is exhausted
 
-No code changes are required when tokens are restored
+No code changes required when LLM access is restored
 
-This ensures graceful degradation in production.
+This ensures graceful degradation in production environments.
 
 🎯 Example Queries
 What is the leave policy?
@@ -99,28 +96,36 @@ What happens if an employee violates discipline rules?
 
 I want to talk to HR
 
-📊 Analytics
+📊 Analytics & Observability
 All queries, intents, and routing decisions are logged to:
 
 data/analytics/query_logs.jsonl
-This helps identify:
+This enables:
 
-Common user questions
+Identification of common user issues
 
-Knowledge gaps
+Knowledge base gap analysis
 
-Agent usage distribution
+Agent usage distribution monitoring
+
+Audit and compliance reviews
+
+🧪 Key Learnings
+Designing reliable agent routing with deterministic fallbacks
+
+Combining rule-based systems with LLM-driven agents
+
+Handling LLM unavailability gracefully in production
+
+Building observable and auditable AI systems
+
+Structuring multi-agent architectures for extensibility
 
 🏁 Project Highlights
-LLM-optional architecture
+LLM-optional, production-safe design
 
-Enterprise-safe compliance handling
+Enterprise-focused compliance handling
 
 Human escalation support
 
-Observability and auditability
-
-Clean, modular, and extensible design
-
-
----
+Clean, modular, and extensible architecture
