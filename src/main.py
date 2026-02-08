@@ -14,10 +14,9 @@ def load_knowledge_base():
     docx_docs = load_docx("data/knowledge_base")
     return chunk_documents(pdf_docs + docx_docs)
 
+KNOWLEDGE_CHUNKS = load_knowledge_base()
 
-DOCUMENTS = load_knowledge_base()
-
-knowledge_agent = KnowledgeAgent(DOCUMENTS)
+knowledge_agent = KnowledgeAgent(KNOWLEDGE_CHUNKS)
 policy_agent = PolicyAgent()
 escalation_agent = EscalationAgent()
 analytics_agent = AnalyticsAgent()
