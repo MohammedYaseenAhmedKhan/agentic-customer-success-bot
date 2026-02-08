@@ -1,3 +1,12 @@
+"""
+Knowledge Retrieval Agent
+
+Responsibilities:
+- Perform semantic retrieval over enterprise documents
+- Optionally invoke LLM for answer synthesis
+- Always return source citations
+- Gracefully degrade when LLM is unavailable
+"""
 from src.rag.retriever import Retriever
 from src.llm.gemini_client import generate_answer
 
