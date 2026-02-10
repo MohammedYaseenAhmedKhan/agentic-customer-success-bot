@@ -9,7 +9,7 @@ making it suitable for real enterprise environments.
 
 ---
 
-## 🚀 Key Features
+## Key Features
 
 - Multi-agent architecture (Intent, Knowledge, Policy, Escalation, Analytics)
 - Retrieval-Augmented Generation (RAG) using FAISS
@@ -23,7 +23,7 @@ making it suitable for real enterprise environments.
 
 ---
 
-## 🧠 System Architecture
+## System Architecture
 
 User Query
 ↓
@@ -42,7 +42,7 @@ Analytics Agent (Logging & Monitoring)
 
 ---
 
-## 🧰 Tech Stack
+##  Tech Stack
 
 | Layer | Technology |
 |-----|-----------|
@@ -57,7 +57,7 @@ Analytics Agent (Logging & Monitoring)
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 agentic-customer-success-bot/
 ├── app/
@@ -89,26 +89,26 @@ agentic-customer-success-bot/
 
 ---
 
-## 🖥️ Running the Application
+##  Running the Application
 
-### 1️⃣ Activate Environment
+### 1️ Activate Environment
 ```bash
 .\.venv\Scripts\Activate.ps1
-2️⃣ Run CLI Version
+2️ Run CLI Version
 python src/main.py
-3️⃣ Run Streamlit UI
+3️ Run Streamlit UI
 python -m streamlit run app/streamlit_app.py
 Open browser at:
 
 http://localhost:8501
-💬 Example Queries
+Example Queries
 What is the leave policy?
 
 What happens if an employee violates discipline rules?
 
 I want to talk to HR
 
-⚠️ LLM Availability & Fallback Design
+LLM Availability & Fallback Design
 The system automatically uses Gemini LLM when API quota is available
 
 If tokens are exhausted or API fails:
@@ -123,7 +123,7 @@ No code changes are required when tokens are restored
 
 This ensures graceful degradation, which is critical in production systems.
 
-📊 Analytics & Observability
+ Analytics & Observability
 All queries and routing decisions are logged to:
 
 data/analytics/query_logs.jsonl
@@ -135,7 +135,7 @@ Identifying knowledge gaps
 
 Measuring agent usage distribution
 
-🎯 Design Decisions
+Design Decisions
 Used a multi-agent architecture to avoid overloading a single LLM
 
 Avoided LLMs for policy and compliance queries to prevent hallucinations
@@ -146,7 +146,7 @@ Used FAISS locally to keep the system simple and cost-efficient
 
 Clean separation between ingestion, retrieval, reasoning, and UI layers
 
-🏁 Summary
+ Summary
 This project demonstrates:
 
 Practical RAG implementation
